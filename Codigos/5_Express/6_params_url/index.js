@@ -6,23 +6,19 @@ const path = require('path')
 
 const basePath = path.join(__dirname,'templates')
 
-const checkAuth = function(req,res,next){
-    req.authStatus = true
-    
-    if(req.authStatus){
-        console.log('Esta logado , pode continuar')
-        next()
-    }else{
-        console.log('Nao esta logado , nao pode continuas ')
-        next()
-    }
-}
+app.get('/users/:id',(req,res)=>{
+    const id = req.params.id
 
-app.use(checkAuth)
+    //leitura da tabela user, regatar usuario do banco de dados
+    console.log(`Estamos buscando o usuario do id : ${id}`)
+    res.sendFile(`${basePath}/users.html`)
+
+})
 
 app.get('/',(req,res)=>{
 
     res.sendFile(`${basePath}/index.html`)
+    
 })
 
 
