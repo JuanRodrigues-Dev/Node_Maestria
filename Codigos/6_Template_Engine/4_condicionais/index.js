@@ -6,15 +6,26 @@ const app = express();
 app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars');
 
+app.get('/dashboard', (req, res) => {
+    res.send('dashboard')
+})
+
 app.get('/', (req, res) => {
-    const user ={
+    const user = {
         name: 'Juan',
         surname: "Rodrigues",
         age: 20
     }
-    res.render('home', {user:user})
+
+    const palavra = 'Teste'
+
+    const auth = true
+
+    res.render('home', { user: user, palavra, auth })
 })
 
-app.listen(3000,()=>{
+
+
+app.listen(3000, () => {
     console.log('API rodando na porta 3000')
 })
